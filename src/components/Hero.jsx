@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { Edit2, Check } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { translations } from '../data/mockData';
 import CountdownTimer from './CountdownTimer';
 import { playConfettiSound } from '../utils/sound';
 
 const Hero = () => {
-  const { language, birthdayPerson, setBirthdayPerson, setPartyStarted, partyStarted, setIsMusicPlaying } = useApp();
-  const [isEditing, setIsEditing] = useState(false);
-  const [tempName, setTempName] = useState(birthdayPerson);
+  const { language, setPartyStarted, partyStarted, setIsMusicPlaying } = useApp();
   const t = translations[language];
 
   // Typing effect state
@@ -22,23 +19,22 @@ const Hero = () => {
     setDisplayedText('');
     
     let i = 0;
-    let isMounted = true; // ✅ Track if component is mounted
+    let isMounted = true;
     
     const typing = setInterval(() => {
-      if (i < fullText.length && isMounted) { // ✅ Check if still mounted
-        setDisplayedText(fullText.substring(0, i + 1)); // ✅ Use substring instead of charAt
+      if (i < fullText.length && isMounted) {
+        setDisplayedText(fullText.substring(0, i + 1));
         i++;
       } else {
         clearInterval(typing);
       }
     }, 40);
     
-    // ✅ Proper cleanup
     return () => {
       isMounted = false;
       clearInterval(typing);
     };
-  }, [fullText]); // ✅ Only depend on fullText, not language
+  }, [fullText]);
 
   const handleStartParty = () => {
     playConfettiSound();
@@ -73,16 +69,11 @@ const Hero = () => {
     }, 500);
   };
 
-  const saveName = () => {
-    setBirthdayPerson(tempName);
-    setIsEditing(false);
-  };
-
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 py-10">
       <div className="z-10 text-center w-full max-w-4xl flex flex-col items-center justify-center min-h-[80vh]">
         
-        {/* Name Section */}
+        {/* Name Section - Fixed "Tanvi" */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -93,34 +84,9 @@ const Hero = () => {
             Happy Birthday
           </div>
           
-          <div className="flex items-center justify-center gap-3">
-            {isEditing ? (
-              <div className="flex items-center bg-white/20 backdrop-blur rounded-lg p-2">
-                <input 
-                  type="text" 
-                  value={tempName}
-                  onChange={(e) => setTempName(e.target.value)}
-                  className="bg-transparent text-4xl md:text-6xl font-extrabold text-white text-center outline-none w-full max-w-[400px]"
-                  autoFocus
-                />
-                <button onClick={saveName} className="p-2 text-white hover:bg-white/20 rounded-full">
-                  <Check size={24} />
-                </button>
-              </div>
-            ) : (
-              <div className="group relative inline-block">
-                <h1 className="text-5xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-pink-200 to-yellow-200 drop-shadow-lg cursor-pointer leading-tight py-2" onClick={() => setIsEditing(true)}>
-                  {birthdayPerson}
-                </h1>
-                <button 
-                  onClick={() => setIsEditing(true)}
-                  className="absolute -right-10 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-white/70 transition-opacity p-2"
-                >
-                  <Edit2 size={20} />
-                </button>
-              </div>
-            )}
-          </div>
+          <h1 className="text-5xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-pink-200 to-yellow-200 drop-shadow-lg leading-tight py-2">
+            Tanvi
+          </h1>
         </motion.div>
 
         {/* Emotional Paragraph */}
