@@ -74,7 +74,9 @@ const Gallery = () => {
               <img 
                 src={img} 
                 alt={`Memory ${index}`} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                className={`w-full h-full transition-transform duration-700 group-hover:scale-110 ${
+                  index % 4 === 0 ? 'object-contain bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900' : 'object-cover'
+                }`}
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
                 <Maximize2 className="text-white drop-shadow-lg" size={32} />
