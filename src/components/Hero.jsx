@@ -8,7 +8,7 @@ import CountdownTimer from './CountdownTimer';
 import { playConfettiSound } from '../utils/sound';
 
 const Hero = () => {
-  const { language, birthdayPerson, setBirthdayPerson, setPartyStarted, partyStarted } = useApp();
+  const { language, birthdayPerson, setBirthdayPerson, setPartyStarted, partyStarted, setIsMusicPlaying } = useApp();  // ✅ setIsMusicPlaying add kela
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState(birthdayPerson);
   const t = translations[language];
@@ -27,13 +27,14 @@ const Hero = () => {
       } else {
         clearInterval(typing);
       }
-    }, 40); // Speed of typing
+    }, 40);
     return () => clearInterval(typing);
   }, [language, fullText]);
 
   const handleStartParty = () => {
     playConfettiSound();
     setPartyStarted(true);
+    setIsMusicPlaying(true);  // ✅ Music ON kara jeva Start Party dabla
     
     // Cannon confetti
     const duration = 3000;
@@ -70,8 +71,6 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 py-10">
-      {/* Background Gradient handled in App.jsx to be continuous */}
-      
       <div className="z-10 text-center w-full max-w-4xl flex flex-col items-center justify-center min-h-[80vh]">
         
         {/* Name Section */}
@@ -140,7 +139,7 @@ const Hero = () => {
             )}
         </motion.div>
 
-        {/* Countdown (Optional, maybe hide if birthday is today) */}
+        {/* Countdown */}
         <div className="mt-12 opacity-80 hover:opacity-100 transition-opacity">
              <CountdownTimer targetDate="2025-12-31T00:00:00" />
         </div>

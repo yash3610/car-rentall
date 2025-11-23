@@ -7,8 +7,8 @@ export const AppProvider = ({ children }) => {
   // Language State
   const [language, setLanguage] = useState('en');
 
-  // Theme State
-  const [darkMode, setDarkMode] = useState(false);
+  // Theme State - Default Dark Mode
+  const [darkMode, setDarkMode] = useState(true);
 
   // Flow State
   const [partyStarted, setPartyStarted] = useState(false);
@@ -23,8 +23,8 @@ export const AppProvider = ({ children }) => {
     return localStorage.getItem('birthday_person') || "Friend";
   });
 
-  // Audio State
-  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  // Audio State - Default Music ON
+  const [isMusicPlaying, setIsMusicPlaying] = useState(true);  // ✅ false वरून true केला
 
   useEffect(() => {
     localStorage.setItem('birthday_wishes', JSON.stringify(wishes));
