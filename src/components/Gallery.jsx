@@ -17,7 +17,7 @@ const Gallery = () => {
     if (isSlideshow) {
       interval = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
-        setSelectedId(galleryImages[(currentIndex + 1) % galleryImages.length]); // Keep selectedId in sync for view
+        setSelectedId(galleryImages[(currentIndex + 1) % galleryImages.length]);
       }, 3000);
     }
     return () => clearInterval(interval);
@@ -116,7 +116,7 @@ const Gallery = () => {
 
             {/* Image */}
             <motion.img
-              key={currentIndex} // Key change triggers animation
+              key={currentIndex}
               src={galleryImages[currentIndex]}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}

@@ -1,3 +1,11 @@
+import image1 from '../assets/image1.jpg';
+import image2 from '../assets/image2.jpg';
+import image3 from '../assets/image3.jpg';
+import image4 from '../assets/image4.jpg';
+import image5 from '../assets/image5.jpg';
+import image6 from '../assets/image6.jpg';
+
+
 export const initialWishes = [
   {
     id: 1,
@@ -14,12 +22,12 @@ export const initialWishes = [
 ];
 
 export const galleryImages = [
-  "https://images.unsplash.com/photo-1530103862676-de3c9a59af57?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1533294160622-d5fece3e080d?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1464349153735-7db50ed83c84?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1514525253440-b393452e3383?auto=format&fit=crop&q=80&w=800",
+  image1,
+  image2,
+  image3,
+  image4,
+  image5,
+  image6,
 ];
 
 export const translations = {
@@ -45,12 +53,12 @@ export const translations = {
     heroSubtitle: "चला हा दिवस अविस्मरणीय बनवूया!",
     musicOn: "संगीत चालू",
     musicOff: "संगीत बंद",
-    heroParagraph: "आजचा दिवस तुझ्यासाठी खूप खास आहे. तुझे हसू, तुझा आनंद आणि तुझा सहवास आमच्यासाठी खूप मोलाचा आहे. येणारे वर्ष तुला खूप सुख, समृद्धी आणि यश घेऊन येवो. तुझ्या सर्व इच्छा पूर्ण होवोत हीच सदिच्छा!",
+    heroParagraph: "आजचा दिवस तुझ्यासाठी खूप खास आहे. तुझे हसू, तुझा आनंद आणि तुझा सहवास सगळ्यांना आनंदी करतो. या वर्षात तुला खूप सुख, यश आणि आनंद मिळो हीच इच्छा.",
     scrollDown: "खाली स्क्रोल करा",
     downloadCard: "ई-कार्ड डाउनलोड करा",
     // Special Wish Card Data
     specialWishTitle: "तुझ्यासाठी एक खास संदेश",
-    specialWishText: "ज्या व्यक्तीमुळे हे जग अधिक सुंदर वाटते, तिला वाढदिवसाच्या खूप खूप शुभेच्छा. तुला आनंद, यश आणि उत्तम आरोग्य लाभो हीच ईश्वरचरणी प्रार्थना. तुझे आयुष्य नेहमी सुखाच्या फुलांनी बहरलेले असो.",
+    specialWishText: "ज्या व्यक्तीमुळे हे जग अधिक सुंदर वाटते, तिला वाढदिवसाच्या खूप खूप शुभेच्छा. तुझी वाटचाल पाहणे हा एक सुंदर प्रवास आहे. या वर्षात तुला अनपेक्षित आनंद मिळो.",
     specialWishSignature: "आपला/आपली",
   }
 };
