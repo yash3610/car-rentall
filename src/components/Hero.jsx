@@ -8,7 +8,7 @@ import CountdownTimer from './CountdownTimer';
 import { playConfettiSound } from '../utils/sound';
 
 const Hero = () => {
-  const { language, birthdayPerson, setBirthdayPerson, setPartyStarted, partyStarted, setIsMusicPlaying } = useApp();  // ✅ setIsMusicPlaying add kela
+  const { language, birthdayPerson, setBirthdayPerson, setPartyStarted, partyStarted, setIsMusicPlaying } = useApp();
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState(birthdayPerson);
   const t = translations[language];
@@ -18,23 +18,32 @@ const Hero = () => {
   const fullText = t.heroParagraph;
 
   useEffect(() => {
+    // Reset displayed text
     setDisplayedText('');
+    
     let i = 0;
+    let isMounted = true; // ✅ Track if component is mounted
+    
     const typing = setInterval(() => {
-      if (i < fullText.length) {
-        setDisplayedText(prev => prev + fullText.charAt(i));
+      if (i < fullText.length && isMounted) { // ✅ Check if still mounted
+        setDisplayedText(fullText.substring(0, i + 1)); // ✅ Use substring instead of charAt
         i++;
       } else {
         clearInterval(typing);
       }
     }, 40);
-    return () => clearInterval(typing);
-  }, [language, fullText]);
+    
+    // ✅ Proper cleanup
+    return () => {
+      isMounted = false;
+      clearInterval(typing);
+    };
+  }, [fullText]); // ✅ Only depend on fullText, not language
 
   const handleStartParty = () => {
     playConfettiSound();
     setPartyStarted(true);
-    setIsMusicPlaying(true);  // ✅ Music ON kara jeva Start Party dabla
+    setIsMusicPlaying(true);
     
     // Cannon confetti
     const duration = 3000;
